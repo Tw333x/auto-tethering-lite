@@ -1,1 +1,2 @@
-# auto-tethering-lite
+#Auto WiFi Tethering Lite [![Travis Build Status](https://travis-ci.org/danielmroczka/auto-tethering.png?branch=master)](https://travis-ci.org/danielmroczka/auto-tethering) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/40f928c9b3444e5c9b5035a3e8a6f56e)](https://www.codacy.com/app/daniel-mroczka/auto-tethering?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=danielmroczka/auto-tethering-lite&amp;utm_campaign=Badge_Grade)
+![App Logo](https://lh3.googleusercontent.com/GwGTGX5OuwMvOlg10Vemwk6x_Pd8EKsbpy-x9pV-t-EI29FCdFXzUH5PV64b2HRVtNCh=h80)
