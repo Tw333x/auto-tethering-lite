@@ -18,7 +18,7 @@ public class BootCompletedReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(final Context context, Intent intent) {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
-        if (prefs.getBoolean("autostart", false)) {
+        if (prefs.getBoolean("auto.start", false)) {
             Intent serviceIntent = new Intent(context, TetheringService.class);
             context.startService(serviceIntent);
         }

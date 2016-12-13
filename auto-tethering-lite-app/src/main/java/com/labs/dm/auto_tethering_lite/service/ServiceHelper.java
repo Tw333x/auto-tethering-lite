@@ -175,7 +175,4 @@ public class ServiceHelper {
         return false;
     }
 
-    public void enableWifi() {
-        wifiManager.setWifiEnabled(true);
-    }
 }

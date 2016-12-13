@@ -5,28 +5,6 @@
     android:orientation="vertical">
 
     <CheckBox
-        android:id="@+id/chkWidgetWifi"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:checked="true"
-        android:enabled="false"
-        android:text="@string/turn_on_off_wifi_tethering" />
-
-    <CheckBox
-        android:id="@+id/chkWidget3G"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:checked="true"
-        android:text="@string/turn_on_off_internet_connection" />
-
-    <CheckBox
-        android:id="@+id/chkStartService"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:checked="false"
-        android:text="Start service if not running" />
-
-    <CheckBox
         android:id="@+id/chkAutoStart"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"

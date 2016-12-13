@@ -24,7 +24,7 @@ public class TetheringService extends IntentService {
             }
         } else {
             helper.setWifiTethering(false);
-            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP && !helper.isConnectedToInternetThroughMobile()) {
+            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP && helper.isConnectedToInternetThroughMobile()) {
                 helper.setMobileDataEnabled(false);
             }
         }

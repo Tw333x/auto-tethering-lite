@@ -3,7 +3,6 @@ package com.labs.dm.auto_tethering_lite.activity;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
@@ -42,16 +41,10 @@ public class ConfigurationActivity extends Activity {
             Log.e("WidgetAdd", "Cannot continue. Widget ID incorrect");
         }
 
-        CheckBox mobile = (CheckBox) findViewById(R.id.chkWidget3G);
-        CheckBox tethering = (CheckBox) findViewById(R.id.chkWidgetWifi);
-        CheckBox startService = (CheckBox) findViewById(R.id.chkStartService);
         CheckBox autoStart = (CheckBox) findViewById(R.id.chkAutoStart);
 
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-        mobile.setChecked(prefs.getBoolean(key("mobile"), false));
-        tethering.setChecked(prefs.getBoolean(key("tethering"), true));
-        startService.setChecked(prefs.getBoolean(key("start.service"), false));
-        autoStart.setChecked(prefs.getBoolean(key("autostart"), false));
+        autoStart.setChecked(prefs.getBoolean("auto.start", false));
 
         Button okButton = (Button) findViewById(R.id.okButton);
         okButton.setText(editMode ? "MODIFY WIDGET" : "ADD WIDGET");
@@ -62,10 +55,6 @@ public class ConfigurationActivity extends Activity {
                 handleOkButton();
             }
         });
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            mobile.setChecked(false);
-            mobile.setEnabled(false);
-        }
     }
 
     private void handleOkButton() {
@@ -73,16 +62,10 @@ public class ConfigurationActivity extends Activity {
     }
 
     private void saveWidget() {
-        CheckBox mobile = (CheckBox) findViewById(R.id.chkWidget3G);
-        CheckBox tethering = (CheckBox) findViewById(R.id.chkWidgetWifi);
-        CheckBox startService = (CheckBox) findViewById(R.id.chkStartService);
         CheckBox autoStart = (CheckBox) findViewById(R.id.chkAutoStart);
 
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-        prefs.edit().putBoolean(key("mobile"), mobile.isChecked()).apply();
-        prefs.edit().putBoolean(key("tethering"), tethering.isChecked()).apply();
-        prefs.edit().putBoolean(key("start.service"), startService.isChecked()).apply();
-        prefs.edit().putBoolean(key("auto.start"), autoStart.isChecked()).apply();
+        prefs.edit().putBoolean("auto.start", autoStart.isChecked()).apply();
 
         if (!editMode) {
             Toast.makeText(this, "Double tap on widget to modify settings", Toast.LENGTH_LONG).show();
@@ -93,9 +76,5 @@ public class ConfigurationActivity extends Activity {
         setResult(RESULT_OK, serviceIntent);
         startService(serviceIntent);
         finish();
-    }
-
-    private String key(String key) {
-        return key;//"widget." + mAppWidgetId + "." + key;
     }
 }

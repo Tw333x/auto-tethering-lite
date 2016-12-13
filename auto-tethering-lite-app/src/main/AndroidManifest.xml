@@ -74,11 +74,5 @@
             android:name=".service.TetheringService"
             android:enabled="true"
             android:exported="true" />
-        <service
-            android:name=".service.WidgetService"
-            android:exported="false" />
-
-
     </application>
-
 </manifest>

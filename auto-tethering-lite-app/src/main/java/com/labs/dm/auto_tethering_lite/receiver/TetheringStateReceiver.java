@@ -14,8 +14,6 @@ import android.util.Log;
 import android.widget.RemoteViews;
 
 import com.labs.dm.auto_tethering_lite.R;
-import com.labs.dm.auto_tethering_lite.TetherIntents;
-import com.labs.dm.auto_tethering_lite.service.ServiceHelper;
 
 import static android.appwidget.AppWidgetManager.EXTRA_APPWIDGET_ID;
 import static android.net.wifi.WifiManager.WIFI_STATE_DISABLED;
@@ -30,8 +28,7 @@ public class TetheringStateReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        ServiceHelper helper = new ServiceHelper(context);
-        Log.i(TAG, intent.getAction() + " " + String.valueOf(helper.isTetheringWiFi()).toUpperCase());
+        Log.i(TAG, intent.getAction());
         AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
         ComponentName thisWidget = new ComponentName(context, TetheringWidgetProvider.class);
 
@@ -48,7 +45,6 @@ public class TetheringStateReceiver extends BroadcastReceiver {
         }
         context.getSharedPreferences("widget", 0).edit().putInt("clicks", 0).apply();
         vibrate(context);
-        context.sendBroadcast(new Intent(TetherIntents.CHANGE_NETWORK_STATE));
     }
 
     private void vibrate(Context context) {
