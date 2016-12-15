@@ -10,6 +10,8 @@ import android.net.wifi.WifiManager;
 import android.util.Log;
 import android.widget.RemoteViews;
 
+import com.labs.dm.auto_tethering_lite.R;
+
 import static android.appwidget.AppWidgetManager.EXTRA_APPWIDGET_ID;
 import static android.net.wifi.WifiManager.WIFI_STATE_DISABLED;
 import static android.net.wifi.WifiManager.WIFI_STATE_ENABLED;

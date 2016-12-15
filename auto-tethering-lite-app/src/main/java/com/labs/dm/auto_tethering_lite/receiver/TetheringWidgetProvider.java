@@ -11,6 +11,7 @@ import android.os.Message;
 import android.util.Log;
 import android.widget.RemoteViews;
 
+import com.labs.dm.auto_tethering_lite.R;
 import com.labs.dm.auto_tethering_lite.activity.ConfigurationActivity;
 import com.labs.dm.auto_tethering_lite.service.ServiceHelper;
 import com.labs.dm.auto_tethering_lite.service.TetheringService;

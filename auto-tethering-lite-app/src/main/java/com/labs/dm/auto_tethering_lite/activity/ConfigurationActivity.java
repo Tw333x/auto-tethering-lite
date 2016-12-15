@@ -17,6 +17,8 @@ import android.widget.CheckBox;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.labs.dm.auto_tethering_lite.BuildConfig;
+import com.labs.dm.auto_tethering_lite.R;
 import com.labs.dm.auto_tethering_lite.Utils;
 import com.labs.dm.auto_tethering_lite.receiver.BootCompletedReceiver;
 import com.labs.dm.auto_tethering_lite.receiver.TetheringWidgetProvider;
