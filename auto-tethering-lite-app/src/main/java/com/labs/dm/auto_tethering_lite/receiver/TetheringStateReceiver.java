@@ -6,10 +6,7 @@ import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.net.wifi.WifiManager;
-import android.os.Vibrator;
-import android.preference.PreferenceManager;
 import android.util.Log;
 import android.widget.RemoteViews;
 
@@ -43,18 +40,8 @@ public class TetheringStateReceiver extends BroadcastReceiver {
             remoteViews.setOnClickPendingIntent(R.id.widget_layout, pendingIntent);
             appWidgetManager.updateAppWidget(widgetId, remoteViews);
         }
-        context.getSharedPreferences("widget", 0).edit().putInt("clicks", 0).apply();
-        vibrate(context);
-    }
 
-    private void vibrate(Context context) {
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
-        if (prefs.getBoolean("vibrate.on.tethering", false)) {
-            Vibrator v = (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE);
-            if (v != null) {
-                v.vibrate(200);
-            }
-        }
+        context.getSharedPreferences("widget", 0).edit().putInt("clicks", 0).apply();
     }
 
     private int getLayout(Intent intent) {

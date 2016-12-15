@@ -7,8 +7,8 @@
 
     </style>
 
-    <style name="MyTheme" parent="android:Theme.Holo.Dialog" tools:targetApi="honeycomb">
-        <item name="android:alertDialogStyle">@style/CustomAlertDialogStyle</item>
+    <style name="MyTheme" parent="android:Theme.Holo" tools:targetApi="honeycomb">
+        <!--<item name="android:alertDialogStyle">@style/CustomAlertDialogStyle</item>-->
         <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:textColorPrimary">#FFFFFF</item>
         <item name="android:backgroundDimEnabled">false</item>

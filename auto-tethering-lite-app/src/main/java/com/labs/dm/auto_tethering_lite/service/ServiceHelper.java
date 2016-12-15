@@ -1,10 +1,7 @@
 package com.labs.dm.auto_tethering_lite.service;
 
-import android.app.ActivityManager;
-import android.app.Service;
 import android.content.Context;
 import android.net.ConnectivityManager;
-import android.net.wifi.WifiConfiguration;
 import android.net.wifi.WifiManager;
 import android.os.Build;
 import android.util.Log;
@@ -52,16 +49,6 @@ public class ServiceHelper {
     }
 
     /**
-     * Returns declared portable Wi-Fi hotspot network SSID.
-     *
-     * @return network SSID
-     */
-    public String getTetheringSSID() {
-        WifiConfiguration cfg = getWifiApConfiguration(context);
-        return cfg != null ? cfg.SSID : "";
-    }
-
-    /**
      * Returns true if internet connection provided by mobile is currently active.
      *
      * @return
@@ -74,16 +61,6 @@ public class ServiceHelper {
     public boolean isConnectedToInternetThroughWiFi() {
         ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         return cm.getNetworkInfo(ConnectivityManager.TYPE_WIFI).isConnected();
-    }
-
-    /**
-     * Returns true if internet connection provided by mobile is currently active or connecting
-     *
-     * @return
-     */
-    public boolean isConnectedOrConnectingToInternet() {
-        ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
-        return cm.getNetworkInfo(ConnectivityManager.TYPE_MOBILE).isConnectedOrConnecting();
     }
 
     /**
@@ -136,43 +113,8 @@ public class ServiceHelper {
         }
     }
 
-    private WifiConfiguration getWifiApConfiguration(final Context ctx) {
-        final WifiManager wifiManager = (WifiManager) ctx.getSystemService(Context.WIFI_SERVICE);
-        final Method method = getWifiManagerMethod("getWifiApConfiguration", wifiManager);
-        if (method != null) {
-            try {
-                return (WifiConfiguration) method.invoke(wifiManager);
-            } catch (Exception e) {
-                Log.e(TAG, e.getMessage());
-            }
-        }
-        return null;
-    }
-
-    private Method getWifiManagerMethod(final String methodName, final WifiManager wifiManager) {
-        final Method[] methods = wifiManager.getClass().getDeclaredMethods();
-        for (Method method : methods) {
-            if (method.getName().equals(methodName)) {
-                return method;
-            }
-        }
-        return null;
-    }
-
-    /**
-     * Checks if service is running
-     *
-     * @param serviceClass
-     * @return
-     */
-    public boolean isServiceRunning(Class<? extends Service> serviceClass) {
-        ActivityManager manager = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
-        for (ActivityManager.RunningServiceInfo service : manager.getRunningServices(Integer.MAX_VALUE)) {
-            if (serviceClass.getName().equals(service.service.getClassName())) {
-                return true;
-            }
-        }
-        return false;
+    public void enableWifi() {
+        wifiManager.setWifiEnabled(true);
     }
 
 }
