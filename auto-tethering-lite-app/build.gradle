@@ -39,7 +39,7 @@ android {
     }
 
     compileSdkVersion 21
-    buildToolsVersion '24.0.2'
+    buildToolsVersion '24.0.3'
 
     defaultConfig {
         applicationId "com.labs.dm.auto_tethering_lite"

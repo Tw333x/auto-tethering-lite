@@ -55,7 +55,7 @@
     <style name="MyBorderlessButton">
         <!-- Set background drawable and text size of the buttons here -->
         <item name="android:background">#3c639e</item>
-        <item name="android:textSize">16dp</item>
+        <item name="android:textSize">16sp</item>
     </style>
 
     <style name="MyButtonBar">
@@ -73,7 +73,7 @@
 
     <style name="MyAlertTextAppearance">
         <!-- Set text size and color of title and message here -->
-        <item name="android:textSize">16dp</item>
+        <item name="android:textSize">16sp</item>
         <item name="android:textColor">#569e3c</item>
     </style>
 

@@ -14,8 +14,19 @@ import static com.labs.dm.auto_tethering_lite.AppProperties.WIFI_ON;
  */
 public class TetheringService extends IntentService {
 
+    private static final String TAG = "TetheringService";
+    private SharedPreferences prefs;
+    private ServiceHelper helper;
+
     public TetheringService() {
-        super("TetheringService");
+        super(TAG);
+    }
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        helper = new ServiceHelper(getApplicationContext());
     }
 
     @Override
@@ -24,14 +35,11 @@ public class TetheringService extends IntentService {
     }
 
     private class TetheringAsyncTask extends AsyncTask<Boolean, Void, Void> {
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-
         @Override
         protected Void doInBackground(Boolean... params) {
             ServiceHelper helper = new ServiceHelper(getApplicationContext());
             if (!helper.isTetheringWiFi()) {
-                prefs.edit().putBoolean(INTERNET_ON, helper.isConnectedToInternetThroughMobile()).apply();
-                prefs.edit().putBoolean(WIFI_ON, helper.isConnectedToInternetThroughWiFi()).apply();
+                onConnect();
                 helper.setWifiTethering(true);
                 if (!helper.isConnectedToInternetThroughMobile()) {
                     helper.setMobileDataEnabled(true);
@@ -42,14 +50,24 @@ public class TetheringService extends IntentService {
                 if (shouldDisconnectInternet && helper.isConnectedToInternetThroughMobile()) {
                     helper.setMobileDataEnabled(false);
                 }
-                if (prefs.getBoolean(WIFI_ON, false)) {
-                    helper.enableWifi();
-                }
-
-                prefs.edit().remove(INTERNET_ON).apply();
-                prefs.edit().remove(WIFI_ON).apply();
+                onDisconnect();
             }
             return null;
         }
+    }
+
+    private void onConnect() {
+        prefs.edit().putBoolean(INTERNET_ON, helper.isConnectedToInternetThroughMobile()).apply();
+        prefs.edit().putBoolean(WIFI_ON, helper.isConnectedToInternetThroughWiFi()).apply();
+    }
+
+    private void onDisconnect() {
+        if (prefs.getBoolean(WIFI_ON, false)) {
+            helper.enableWifi();
+        }
+
+        prefs.edit().remove(INTERNET_ON).apply();
+        prefs.edit().remove(WIFI_ON).apply();
+
     }
 }
