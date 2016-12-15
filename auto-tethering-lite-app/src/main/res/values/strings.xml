@@ -8,5 +8,16 @@
     <string name="on">ON</string>
     <string name="off">OFF</string>
     <string name="widget.conf.title">Widget Configuration</string>
+    <string name="yes">Yes</string>
+    <string name="warning">Warning</string>
+    <string name="donot_remind">Do not remind</string>
+    <string name="no">No</string>
+    <string name="on_startup_enable">Startup application on boot has been enabled</string>
+    <string name="startup.blocked.prompt">Startup application on system boot is currently blocked and therefore service cannot run properly.\n\nDo you want to enable this setting?</string>
+    <string name="tap.modify.widget">Double tap on widget to modify settings</string>
+    <string name="save.settings">SAVE SETTINGS</string>
+    <string name="modify.widget">MODIFY WIDGET</string>
+    <string name="start_tethering_on_system_startup">Start tethering on system startup</string>
+    <string name="wait">WAIT...</string>
 </resources>
 

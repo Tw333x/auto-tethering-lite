@@ -11,13 +11,13 @@ import android.os.Message;
 import android.util.Log;
 import android.widget.RemoteViews;
 
-import com.labs.dm.auto_tethering_lite.R;
 import com.labs.dm.auto_tethering_lite.activity.ConfigurationActivity;
 import com.labs.dm.auto_tethering_lite.service.ServiceHelper;
 import com.labs.dm.auto_tethering_lite.service.TetheringService;
 
 import static android.appwidget.AppWidgetManager.EXTRA_APPWIDGET_ID;
 import static android.content.Context.MODE_PRIVATE;
+import static com.labs.dm.auto_tethering_lite.AppProperties.EDIT_MODE;
 import static com.labs.dm.auto_tethering_lite.Utils.getWidgetId;
 
 /**
@@ -61,7 +61,7 @@ public class TetheringWidgetProvider extends AppWidgetProvider {
                         Intent i = new Intent(context, ConfigurationActivity.class);
                         i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         i.putExtra(EXTRA_APPWIDGET_ID, getWidgetId(intent));
-                        i.putExtra("editMode", true);
+                        i.putExtra(EDIT_MODE, true);
                         context.startActivity(i);
                     } else {
                         Intent serviceIntent = new Intent(context, TetheringService.class);
