@@ -6,18 +6,18 @@
     <string name="donot_remind">Nie przypominaj</string>
     <string name="modify.widget">Edytuj Widget</string>
     <string name="no">Nie</string>
-    <string name="off">wylacz.</string>
-    <string name="on">wlacz.</string>
-    <string name="on_startup_enable">Udostepnianie internetu po starcie systemu zostalo wlaczone</string>
+    <string name="off">wyłącz.</string>
+    <string name="on">włącz.</string>
+    <string name="on_startup_enable">Udostępnianie internetu po starcie systemu zostało włączone</string>
     <string name="save.settings">Zapisz</string>
-    <string name="start_tethering_on_system_startup">Udostepniaj internet po starcie systemu</string>
-    <string name="startup.blocked.prompt">Udostepnianie internetu jest zablokowane</string>
-    <string name="tap.modify.widget">Dwukrotnie dotknij widget aby edytowac ustawienia</string>
-    <string name="tap_to_turn_off_tethering">Dotknij widget aby wylaczyc udostepnianie internetu</string>
-    <string name="tap_to_turn_on_tethering">Dotknij widget aby wlaczyc udostepnianie internetu</string>
+    <string name="start_tethering_on_system_startup">Udostępniaj internet po starcie systemu</string>
+    <string name="startup.blocked.prompt">Udostępnianie internetu jest zablokowane</string>
+    <string name="tap.modify.widget">Dwukrotnie dotknij widget aby edytować ustawienia</string>
+    <string name="tap_to_turn_off_tethering">Dotknij widget aby wyłączyć udostępnianie internetu</string>
+    <string name="tap_to_turn_on_tethering">Dotknij widget aby wyłączyć udostępnianie internetu</string>
     <string name="version">wersja:</string>
     <string name="wait">czekaj...</string>
-    <string name="warning">Ostrzezenie</string>
+    <string name="warning">Ostrzeżenie</string>
     <string name="widget.conf.title">Konfiguracja widgetu</string>
     <string name="yes">Tak</string>
 </resources>

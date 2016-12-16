@@ -28,6 +28,7 @@ import java.util.Locale;
 
 import static android.appwidget.AppWidgetManager.EXTRA_APPWIDGET_ID;
 import static android.appwidget.AppWidgetManager.INVALID_APPWIDGET_ID;
+import static android.content.Intent.ACTION_MAIN;
 import static com.labs.dm.auto_tethering_lite.AppProperties.AUTO_START;
 import static com.labs.dm.auto_tethering_lite.AppProperties.DONT_REMIND;
 import static com.labs.dm.auto_tethering_lite.AppProperties.EDIT_MODE;
@@ -49,8 +50,14 @@ public class ConfigurationActivity extends Activity {
         init();
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        checkIfNotlocked();
+    }
+
     private void init() {
-        activityMode = "android.intent.action.MAIN".equals(getIntent().getAction());
+        activityMode = ACTION_MAIN.equals(getIntent().getAction());
         editMode = getIntent().getExtras() != null && getIntent().getExtras().getBoolean(EDIT_MODE, false);
         mAppWidgetId = Utils.getWidgetId(getIntent());
         if (mAppWidgetId == INVALID_APPWIDGET_ID) {
@@ -82,8 +89,6 @@ public class ConfigurationActivity extends Activity {
         TextView textView = (TextView) findViewById(R.id.label);
         String buildTime = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.ENGLISH).format(BuildConfig.buildTime);
         textView.setText(String.format("%s.%s build: %s", pInfo != null ? pInfo.versionName : null, BuildConfig.BUILD_TYPE.toUpperCase(), buildTime));
-
-        checkIfNotlocked();
     }
 
     private void handleOkButton() {
