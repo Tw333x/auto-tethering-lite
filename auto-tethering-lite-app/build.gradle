@@ -38,14 +38,14 @@ android {
         }
     }
 
-    compileSdkVersion 21
-    buildToolsVersion '24.0.2'
+    compileSdkVersion 23
+    buildToolsVersion '25.0.0'
 
     defaultConfig {
         applicationId "com.labs.dm.auto_tethering_lite"
         minSdkVersion 10
         maxSdkVersion 23
-        targetSdkVersion 21
+        targetSdkVersion 23
         versionCode 2
         versionName "0.0.2"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -116,9 +116,9 @@ def getMyApiKey(String property) {
 
 ext {
     ANDROID_BUILD_MIN_SDK_VERSION = 10
-    ANDROID_BUILD_TARGET_SDK_VERSION = 22
-    ANDROID_BUILD_TOOLS_VERSION = '24.0.2'
-    ANDROID_BUILD_SDK_VERSION = 22
+    ANDROID_BUILD_TARGET_SDK_VERSION = 23
+    ANDROID_BUILD_TOOLS_VERSION = '25.0.0'
+    ANDROID_BUILD_SDK_VERSION = 23
     SUPPORT_VERSION = '22.2.1'
     MAVEN_VERSION = '1.1.3'
 }
