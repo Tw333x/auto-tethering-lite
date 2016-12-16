@@ -3,17 +3,17 @@ install: true
 script: gradle clean assemble
 android:
   components:
-    - build-tools-25.0.0
-    - android-25
+    - build-tools-24.0.2
+    - android-24
     - extra
 jdk:
   - oraclejdk8
 before_install:
   # Gradle
   - echo y | android update sdk --no-ui --all --filter "tools"
-  - echo y | android update sdk --no-ui --all --filter "build-tools-25.0.0"
-  - wget http://services.gradle.org/distributions/gradle-3.2-bin.zip
-  - unzip gradle-3.2-bin.zip
-  - export GRADLE_HOME=$PWD/gradle-3.2
+  - echo y | android update sdk --no-ui --all --filter "build-tools-24.0.2"
+  - wget http://services.gradle.org/distributions/gradle-2.14.1-bin.zip
+  - unzip gradle-2.14.1-bin.zip
+  - export GRADLE_HOME=$PWD/gradle-2.14.1
   - export PATH=$GRADLE_HOME/bin:$PATH
 after_success: ./merge_to_dev.sh
