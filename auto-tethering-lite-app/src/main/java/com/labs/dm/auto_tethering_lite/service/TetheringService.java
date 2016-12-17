@@ -1,12 +1,23 @@
 package com.labs.dm.auto_tethering_lite.service;
 
 import android.app.IntentService;
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
+import android.os.Build;
+import android.os.Handler;
 import android.preference.PreferenceManager;
 
+import com.labs.dm.auto_tethering_lite.R;
+import com.labs.dm.auto_tethering_lite.activity.ConfigurationActivity;
+
+import static com.labs.dm.auto_tethering_lite.AppProperties.EDIT_MODE;
 import static com.labs.dm.auto_tethering_lite.AppProperties.INTERNET_ON;
+import static com.labs.dm.auto_tethering_lite.AppProperties.NOTIFICATION_ID;
 import static com.labs.dm.auto_tethering_lite.AppProperties.WIFI_ON;
 
 /**
@@ -32,6 +43,9 @@ public class TetheringService extends IntentService {
     @Override
     protected void onHandleIntent(Intent intent) {
         new TetheringAsyncTask().doInBackground();
+        if (intent.getBooleanExtra("boot", false)) {
+            push();
+        }
     }
 
     private class TetheringAsyncTask extends AsyncTask<Boolean, Void, Void> {
@@ -70,4 +84,40 @@ public class TetheringService extends IntentService {
         prefs.edit().remove(WIFI_ON).apply();
 
     }
+
+    private void push() {
+        final int notificationId = 1234;
+        String caption = getString(R.string.push_msg);
+        Notification notify;
+        Intent intent = new Intent(getApplicationContext(), ConfigurationActivity.class);
+        intent.putExtra(EDIT_MODE, true);
+        intent.putExtra(NOTIFICATION_ID, notificationId);
+        PendingIntent pendingIntent = PendingIntent.getActivity(getApplicationContext(), 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+            Notification.Builder builder = new Notification.Builder(this)
+                    .setTicker(caption)
+                    .setContentText(caption)
+                    .setContentTitle(getText(R.string.app_name))
+                    .setContentIntent(pendingIntent)
+                    .setSmallIcon(R.drawable.app)
+                    .setStyle(new Notification.BigTextStyle().bigText(caption).setBigContentTitle(getText(R.string.app_name)));
+
+            notify = builder.build();
+        } else {
+            notify = new Notification(R.drawable.app, caption, System.currentTimeMillis());
+            notify.setLatestEventInfo(getApplicationContext(), getText(R.string.app_name), caption, pendingIntent);
+        }
+        final NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        notificationManager.cancel(notificationId);
+        notificationManager.notify(notificationId, notify);
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                notificationManager.cancel(notificationId);
+            }
+        }, 60000);
+    }
+
 }

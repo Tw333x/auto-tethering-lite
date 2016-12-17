@@ -19,5 +19,6 @@
     <string name="modify.widget">MODIFY WIDGET</string>
     <string name="start_tethering_on_system_startup">Start tethering on system startup</string>
     <string name="wait">WAIT...</string>
+    <string name="push.msg">WiFi Tethering has been started. Tap to change configuration</string>
 </resources>
 

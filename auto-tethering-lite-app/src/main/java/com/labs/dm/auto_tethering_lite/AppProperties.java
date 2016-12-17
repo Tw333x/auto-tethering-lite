@@ -12,5 +12,6 @@ public class AppProperties {
 
     // OTHER CONSTS
     public static final String EDIT_MODE = "edit.mode";
+    public static final String NOTIFICATION_ID = "notification.id";
 
 }

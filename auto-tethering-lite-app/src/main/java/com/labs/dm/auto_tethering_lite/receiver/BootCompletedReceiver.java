@@ -22,6 +22,7 @@ public class BootCompletedReceiver extends BroadcastReceiver {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
         if (prefs.getBoolean(AUTO_START, false)) {
             Intent serviceIntent = new Intent(context, TetheringService.class);
+            serviceIntent.putExtra("boot", true);
             context.startService(serviceIntent);
         }
     }

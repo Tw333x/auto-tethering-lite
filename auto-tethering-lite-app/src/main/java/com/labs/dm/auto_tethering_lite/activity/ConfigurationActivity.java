@@ -2,7 +2,9 @@ package com.labs.dm.auto_tethering_lite.activity;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.NotificationManager;
 import android.content.ComponentName;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -32,6 +34,7 @@ import static android.content.Intent.ACTION_MAIN;
 import static com.labs.dm.auto_tethering_lite.AppProperties.AUTO_START;
 import static com.labs.dm.auto_tethering_lite.AppProperties.DONT_REMIND;
 import static com.labs.dm.auto_tethering_lite.AppProperties.EDIT_MODE;
+import static com.labs.dm.auto_tethering_lite.AppProperties.NOTIFICATION_ID;
 
 /**
  * Created by Daniel Mroczka on 2016-01-09.
@@ -89,6 +92,12 @@ public class ConfigurationActivity extends Activity {
         TextView textView = (TextView) findViewById(R.id.label);
         String buildTime = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.ENGLISH).format(BuildConfig.buildTime);
         textView.setText(String.format("%s.%s build: %s", pInfo != null ? pInfo.versionName : null, BuildConfig.BUILD_TYPE.toUpperCase(), buildTime));
+
+        int notificationId = getIntent().getExtras() != null ? getIntent().getExtras().getInt(NOTIFICATION_ID, 0) : 0;
+        if (notificationId > 0) {
+            final NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+            notificationManager.cancel(notificationId);
+        }
     }
 
     private void handleOkButton() {
