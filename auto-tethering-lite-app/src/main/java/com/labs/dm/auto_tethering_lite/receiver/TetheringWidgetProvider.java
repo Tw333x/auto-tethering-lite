@@ -6,6 +6,7 @@ import android.appwidget.AppWidgetProvider;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
@@ -44,7 +45,12 @@ public class TetheringWidgetProvider extends AppWidgetProvider {
             remoteViews.setOnClickPendingIntent(R.id.widget_layout, pendingIntent);
             appWidgetManager.updateAppWidget(widgetId, remoteViews);
         }
-        context.getSharedPreferences("widget", 0).edit().putInt("clicks", 0).apply();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.GINGERBREAD) {
+            context.getSharedPreferences("widget", 0).edit().putInt("clicks", 0).apply();
+        } else {
+            context.getSharedPreferences("widget", 0).edit().putInt("clicks", 0).commit();
+        }
+
     }
 
     @Override

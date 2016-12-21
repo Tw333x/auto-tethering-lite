@@ -7,6 +7,7 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.net.wifi.WifiManager;
+import android.os.Build;
 import android.util.Log;
 import android.widget.RemoteViews;
 
@@ -41,7 +42,11 @@ public class TetheringStateReceiver extends BroadcastReceiver {
             appWidgetManager.updateAppWidget(widgetId, remoteViews);
         }
 
-        context.getSharedPreferences("widget", 0).edit().putInt("clicks", 0).apply();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.GINGERBREAD) {
+            context.getSharedPreferences("widget", 0).edit().putInt("clicks", 0).apply();
+        } else {
+            context.getSharedPreferences("widget", 0).edit().putInt("clicks", 0).commit();
+        }
     }
 
     private int getLayout(Intent intent) {

@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
@@ -147,7 +148,11 @@ public class ConfigurationActivity extends Activity {
                     .setNeutralButton(R.string.donot_remind, new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            prefs.edit().putBoolean(DONT_REMIND, true).apply();
+                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.GINGERBREAD) {
+                                prefs.edit().putBoolean(DONT_REMIND, true).apply();
+                            } else {
+                                prefs.edit().putBoolean(DONT_REMIND, true).commit();
+                            }
                         }
                     })
                     .setNegativeButton(R.string.no, null

@@ -43,11 +43,11 @@ android {
 
     defaultConfig {
         applicationId "com.labs.dm.auto_tethering_lite"
-        minSdkVersion 10
-        maxSdkVersion 23
+        minSdkVersion 4
+        maxSdkVersion 24
         targetSdkVersion 21
-        versionCode 3
-        versionName "0.0.3"
+        versionCode 4
+        versionName "0.0.4"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         buildConfigField "java.util.Date", "buildTime", "new java.util.Date(" + getDateAsMillis() + "L)"
     }
@@ -67,15 +67,15 @@ dependencies {
     //compile -->
     compile fileTree(include: ['*.jar'], dir: 'libs')
     //testCompile -->
-    testCompile 'junit:junit:4.12'
-    testCompile 'org.mockito:mockito-core:1.10.19'
-    testCompile 'org.hamcrest:hamcrest-library:1.1'
-    testCompile 'org.robolectric:robolectric:3.1.2'
+    //testCompile 'junit:junit:4.12'
+    //testCompile 'org.mockito:mockito-core:1.10.19'
+    //testCompile 'org.hamcrest:hamcrest-library:1.1'
+    //testCompile 'org.robolectric:robolectric:3.1.2'
     //androidTestCompile -->
-    androidTestCompile 'com.android.support.test:runner:0.5'
-    androidTestCompile 'com.android.support.test:rules:0.5'
-    androidTestCompile 'com.android.support.test.espresso:espresso-core:2.2.2'
-    androidTestCompile 'org.mockito:mockito-core:1.10.19'
+    //androidTestCompile 'com.android.support.test:runner:0.5'
+    //androidTestCompile 'com.android.support.test:rules:0.5'
+    //androidTestCompile 'com.android.support.test.espresso:espresso-core:2.2.2'
+    //androidTestCompile 'org.mockito:mockito-core:1.10.19'
 }
 
 def Properties props = new Properties()
@@ -101,7 +101,7 @@ if (propFile.canRead()) {
 }
 
 ext {
-    ANDROID_BUILD_MIN_SDK_VERSION = 10
+    ANDROID_BUILD_MIN_SDK_VERSION = 4
     ANDROID_BUILD_TARGET_SDK_VERSION = 22
     ANDROID_BUILD_TOOLS_VERSION = '24.0.2'
     ANDROID_BUILD_SDK_VERSION = 22
