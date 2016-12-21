@@ -109,7 +109,11 @@ public class ConfigurationActivity extends Activity {
         CheckBox autoStart = (CheckBox) findViewById(R.id.chkAutoStart);
 
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-        prefs.edit().putBoolean(AUTO_START, autoStart.isChecked()).apply();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.GINGERBREAD) {
+            prefs.edit().putBoolean(AUTO_START, autoStart.isChecked()).apply();
+        } else {
+            prefs.edit().putBoolean(AUTO_START, autoStart.isChecked()).commit();
+        }
 
         if (!editMode && !activityMode) {
             Toast.makeText(this, R.string.tap_modify_widget, Toast.LENGTH_LONG).show();

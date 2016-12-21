@@ -71,8 +71,13 @@ public class TetheringService extends IntentService {
     }
 
     private void onConnect() {
-        prefs.edit().putBoolean(INTERNET_ON, helper.isConnectedToInternetThroughMobile()).apply();
-        prefs.edit().putBoolean(WIFI_ON, helper.isConnectedToInternetThroughWiFi()).apply();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.GINGERBREAD) {
+            prefs.edit().putBoolean(INTERNET_ON, helper.isConnectedToInternetThroughMobile()).apply();
+            prefs.edit().putBoolean(WIFI_ON, helper.isConnectedToInternetThroughWiFi()).apply();
+        } else {
+            prefs.edit().putBoolean(INTERNET_ON, helper.isConnectedToInternetThroughMobile()).commit();
+            prefs.edit().putBoolean(WIFI_ON, helper.isConnectedToInternetThroughWiFi()).commit();
+        }
     }
 
     private void onDisconnect() {
@@ -80,9 +85,13 @@ public class TetheringService extends IntentService {
             helper.enableWifi();
         }
 
-        prefs.edit().remove(INTERNET_ON).apply();
-        prefs.edit().remove(WIFI_ON).apply();
-
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.GINGERBREAD) {
+            prefs.edit().remove(INTERNET_ON).apply();
+            prefs.edit().remove(WIFI_ON).apply();
+        } else {
+            prefs.edit().remove(INTERNET_ON).commit();
+            prefs.edit().remove(WIFI_ON).commit();
+        }
     }
 
     private void push() {

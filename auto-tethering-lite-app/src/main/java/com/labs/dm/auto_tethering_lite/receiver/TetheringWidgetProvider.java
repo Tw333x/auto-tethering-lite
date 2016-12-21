@@ -57,7 +57,11 @@ public class TetheringWidgetProvider extends AppWidgetProvider {
     public void onReceive(final Context context, final Intent intent) {
         if (intent.getAction().equals("widget.click")) {
             int clickCount = context.getSharedPreferences("widget", MODE_PRIVATE).getInt("clicks", 0);
-            context.getSharedPreferences("widget", MODE_PRIVATE).edit().putInt("clicks", ++clickCount).apply();
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.GINGERBREAD) {
+                context.getSharedPreferences("widget", MODE_PRIVATE).edit().putInt("clicks", ++clickCount).apply();
+            } else {
+                context.getSharedPreferences("widget", MODE_PRIVATE).edit().putInt("clicks", ++clickCount).commit();
+            }
 
             final Handler handler = new Handler() {
                 public void handleMessage(Message msg) {
@@ -75,7 +79,12 @@ public class TetheringWidgetProvider extends AppWidgetProvider {
                         context.startService(serviceIntent);
                     }
 
-                    context.getSharedPreferences("widget", MODE_PRIVATE).edit().putInt("clicks", 0).apply();
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.GINGERBREAD) {
+                        context.getSharedPreferences("widget", MODE_PRIVATE).edit().putInt("clicks", 0).apply();
+                    } else {
+                        context.getSharedPreferences("widget", MODE_PRIVATE).edit().putInt("clicks", 0).commit();
+                    }
+
                 }
             };
 
