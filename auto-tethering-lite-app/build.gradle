@@ -87,10 +87,12 @@ if (propFile.canRead()) {
     if (props != null && props.containsKey('RELEASE_STORE_FILE') && props.containsKey('RELEASE_STORE_PASSWORD') &&
             props.containsKey('RELEASE_KEY_ALIAS') && props.containsKey('RELEASE_KEY_PASSWORD')) {
         println 'gradle.properties found at:  ' + propFile
-        android.signingConfigs.release.storeFile = file(System.properties['user.home'] + '/.gradle/' + props['RELEASE_STORE_FILE'])
-        android.signingConfigs.release.storePassword = props['RELEASE_STORE_PASSWORD']
-        android.signingConfigs.release.keyAlias = props['RELEASE_KEY_ALIAS']
-        android.signingConfigs.release.keyPassword = props['RELEASE_KEY_PASSWORD']
+        android.signingConfigs.release.with {
+            storeFile = file(System.properties['user.home'] + '/.gradle/' + props['RELEASE_STORE_FILE'])
+            storePassword = props['RELEASE_STORE_PASSWORD']
+            keyAlias = props['RELEASE_KEY_ALIAS']
+            keyPassword = props['RELEASE_KEY_PASSWORD']
+        }
     } else {
         println 'gradle.properties found but some entries are missing'
         android.buildTypes.release.signingConfig = null
