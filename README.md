@@ -1,4 +1,4 @@
-#Auto WiFi Tethering Lite [![Travis Build Status](https://travis-ci.org/danielmroczka/auto-tethering-lite.png?branch=master)](https://travis-ci.org/danielmroczka/auto-tethering-lite) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/40f928c9b3444e5c9b5035a3e8a6f56e)](https://www.codacy.com/app/daniel-mroczka/auto-tethering-lite?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=danielmroczka/auto-tethering-lite&amp;utm_campaign=Badge_Grade)
+# Auto WiFi Tethering Lite [![Travis Build Status](https://travis-ci.org/danielmroczka/auto-tethering-lite.png?branch=master)](https://travis-ci.org/danielmroczka/auto-tethering-lite) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/40f928c9b3444e5c9b5035a3e8a6f56e)](https://www.codacy.com/app/daniel-mroczka/auto-tethering-lite?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=danielmroczka/auto-tethering-lite&amp;utm_campaign=Badge_Grade)
 ![App Logo](https://lh3.googleusercontent.com/GwGTGX5OuwMvOlg10Vemwk6x_Pd8EKsbpy-x9pV-t-EI29FCdFXzUH5PV64b2HRVtNCh=h80)
 
 Android widget allows to turn on/off WiFi tethering. Moreover it allows to start WiFi tethering upon the system boot.
