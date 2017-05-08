@@ -6,7 +6,6 @@ android:
     - tools
     - build-tools-25.0.2
     - extra
-    - android-25
     - android-22
 jdk:
   - oraclejdk8
@@ -14,7 +13,6 @@ before_install:
   # Gradle
   - echo y | android update sdk --no-ui --all --filter "tools"
   - echo y | android update sdk --no-ui --all --filter "build-tools-25.0.2"
-  - echo y | android update sdk --no-ui --all --filter "android-25"
   - echo y | android update sdk --no-ui --all --filter "android-22"
   - echo y | android update sdk --no-ui --all --filter "extra-android-m2repository"
   - wget http://services.gradle.org/distributions/gradle-3.4.1-bin.zip
